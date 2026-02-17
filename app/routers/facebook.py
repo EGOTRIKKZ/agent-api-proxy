@@ -11,6 +11,18 @@ router = APIRouter(prefix="/api/facebook", tags=["Facebook"])
 settings = get_settings()
 
 
+@router.get("/config-check")
+async def config_check():
+    """Debug endpoint to check if Facebook config is loaded"""
+    return {
+        "facebook_page_id_set": bool(settings.facebook_page_id),
+        "facebook_page_token_set": bool(settings.facebook_page_token),
+        "facebook_verify_token_set": bool(settings.facebook_verify_token),
+        "facebook_app_secret_set": bool(settings.facebook_app_secret),
+        "verify_token_value": settings.facebook_verify_token or "NOT_SET"
+    }
+
+
 # Request/Response Models
 class FacebookWebhookEntry(BaseModel):
     """Single entry in a Facebook webhook batch"""
@@ -107,6 +119,13 @@ async def verify_webhook(
     mode = params.get("hub.mode")
     token = params.get("hub.verify_token")
     challenge = params.get("hub.challenge")
+    
+    # Debug logging
+    print(f"🔍 Webhook verify attempt:")
+    print(f"  Mode: {mode}")
+    print(f"  Token received: {token}")
+    print(f"  Token expected: {settings.facebook_verify_token}")
+    print(f"  Challenge: {challenge}")
     
     # Check if mode and token are correct
     if mode == "subscribe" and token == settings.facebook_verify_token:
