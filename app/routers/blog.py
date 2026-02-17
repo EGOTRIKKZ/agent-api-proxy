@@ -4,58 +4,15 @@ from pathlib import Path
 import markdown
 from datetime import datetime
 
+# Import posts from Python module (temporary fix for Railway)
+from app.blog_posts import POSTS
+
 router = APIRouter(prefix="/blog", tags=["Blog"])
-
-BLOG_DIR = Path(__file__).parent.parent.parent / "blog"
-
-
-@router.get("/debug")
-async def debug_blog():
-    """Debug endpoint to check blog directory."""
-    import os
-    return {
-        "blog_dir": str(BLOG_DIR),
-        "blog_dir_exists": BLOG_DIR.exists(),
-        "blog_dir_absolute": str(BLOG_DIR.absolute()),
-        "current_file": str(Path(__file__)),
-        "current_dir": str(Path.cwd()),
-        "files_in_blog": list(BLOG_DIR.glob("*.md")) if BLOG_DIR.exists() else []
-    }
 
 
 def load_posts():
-    """Load all blog posts from the blog directory."""
-    posts = []
-    
-    if not BLOG_DIR.exists():
-        return posts
-    
-    for md_file in sorted(BLOG_DIR.glob("*.md"), reverse=True):
-        # Parse filename: YYYY-MM-DD-slug.md
-        parts = md_file.stem.split("-", 3)
-        if len(parts) >= 4:
-            year, month, day, slug = parts[0], parts[1], parts[2], parts[3]
-            date = f"{year}-{month}-{day}"
-            
-            # Read content
-            content = md_file.read_text(encoding='utf-8')
-            
-            # Extract title from first heading
-            title = "Untitled"
-            for line in content.split('\n'):
-                if line.startswith('# '):
-                    title = line[2:].strip()
-                    break
-            
-            posts.append({
-                'slug': md_file.stem,
-                'title': title,
-                'date': date,
-                'content': content,
-                'path': md_file
-            })
-    
-    return posts
+    """Load all blog posts from Python data."""
+    return sorted(POSTS, key=lambda p: p['date'], reverse=True)
 
 
 def render_post_html(post):
