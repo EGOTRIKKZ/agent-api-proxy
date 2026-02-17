@@ -104,14 +104,16 @@ def render_post_html(post):
 
 
 def render_list_html(posts):
-    """Render the blog post list."""
+    """Render the blog post list with full content."""
     post_items = []
     for post in posts:
+        # Render markdown to HTML
+        html_content = markdown.markdown(post['content'])
         post_items.append(f"""
-            <div class="post-card">
-                <h2><a href="/blog/{post['slug']}">{post['title']}</a></h2>
+            <article class="post-card">
                 <div class="meta">{post['date']}</div>
-            </div>
+                {html_content}
+            </article>
         """)
     
     posts_html = "\n".join(post_items) if post_items else "<p>No posts yet.</p>"
@@ -148,29 +150,50 @@ def render_list_html(posts):
         }}
         .post-card {{
             background: white;
-            padding: 30px;
-            margin-bottom: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
         }}
-        .post-card:hover {{
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        .post-card h1 {{
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 0;
         }}
         .post-card h2 {{
-            margin: 0 0 10px 0;
+            color: #34495e;
+            margin-top: 30px;
         }}
-        .post-card h2 a {{
-            color: #2c3e50;
-            text-decoration: none;
+        .post-card h3 {{
+            color: #555;
         }}
-        .post-card h2 a:hover {{
+        .post-card ul {{
+            list-style: none;
+            padding-left: 0;
+        }}
+        .post-card ul li {{
+            padding: 5px 0;
+        }}
+        .post-card ul li:before {{
+            content: "• ";
             color: #3498db;
+            font-weight: bold;
+            margin-right: 8px;
+        }}
+        .post-card hr {{
+            border: none;
+            border-top: 2px solid #ecf0f1;
+            margin: 30px 0;
+        }}
+        .post-card strong {{
+            color: #2c3e50;
         }}
         .meta {{
             color: #7f8c8d;
             font-size: 0.9em;
+            margin-bottom: 20px;
         }}
         footer {{
             text-align: center;
