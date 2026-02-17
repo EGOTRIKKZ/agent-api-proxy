@@ -9,6 +9,20 @@ router = APIRouter(prefix="/blog", tags=["Blog"])
 BLOG_DIR = Path(__file__).parent.parent.parent / "blog"
 
 
+@router.get("/debug")
+async def debug_blog():
+    """Debug endpoint to check blog directory."""
+    import os
+    return {
+        "blog_dir": str(BLOG_DIR),
+        "blog_dir_exists": BLOG_DIR.exists(),
+        "blog_dir_absolute": str(BLOG_DIR.absolute()),
+        "current_file": str(Path(__file__)),
+        "current_dir": str(Path.cwd()),
+        "files_in_blog": list(BLOG_DIR.glob("*.md")) if BLOG_DIR.exists() else []
+    }
+
+
 def load_posts():
     """Load all blog posts from the blog directory."""
     posts = []
