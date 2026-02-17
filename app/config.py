@@ -19,6 +19,12 @@ class Settings(BaseSettings):
     sendgrid_api_key: str = ""
     sendgrid_from_email: str = ""
     
+    # Facebook Messenger
+    facebook_page_token: str = ""
+    facebook_page_id: str = ""
+    facebook_app_secret: str = ""
+    facebook_verify_token: str = ""
+    
     # Rate Limiting (requests per minute per API key)
     rate_limit_per_minute: int = 30
     

@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 
 from app.config import get_settings
 from app.database import init_db, get_db, create_api_key, UsageLog, APIKey
-from app.routers import reddit, email
+from app.routers import reddit, email, facebook
 from app.rate_limiter import limiter
 from slowapi.errors import RateLimitExceeded
 from datetime import datetime, timedelta
@@ -48,6 +48,7 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
 # Include routers
 app.include_router(reddit.router)
 app.include_router(email.router)
+app.include_router(facebook.router)
 
 
 # Mount static files for landing page
