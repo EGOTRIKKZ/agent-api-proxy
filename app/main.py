@@ -67,6 +67,19 @@ async def landing_page():
         )
 
 
+@app.get("/privacy", response_class=HTMLResponse)
+async def privacy_policy():
+    """Serve privacy policy page"""
+    try:
+        with open("static/privacy.html", "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        return HTMLResponse(
+            content="<h1>Privacy Policy</h1><p>Privacy policy not found.</p>",
+            status_code=404
+        )
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
