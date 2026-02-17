@@ -252,22 +252,23 @@ async def send_message(
         )
 
 
-@router.post("/post")
-async def post_to_page(
-    message: str,
-    page_id: Optional[str] = None,
+class FacebookPostRequest(BaseModel):
+    """Request model for posting to Facebook page"""
+    message: str
+    page_id: Optional[str] = None
     page_access_token: Optional[str] = None
-):
+
+
+@router.post("/post")
+async def post_to_page(request: FacebookPostRequest):
     """
     Post a message to the Facebook Page timeline
     
     Args:
-        message: Text content to post
-        page_id: Optional override for page ID
-        page_access_token: Optional override for page token
+        request: Post request containing message and optional overrides
     """
-    token = page_access_token or settings.facebook_page_token
-    page = page_id or settings.facebook_page_id
+    token = request.page_access_token or settings.facebook_page_token
+    page = request.page_id or settings.facebook_page_id
     
     if not token or not page:
         raise HTTPException(
@@ -280,7 +281,7 @@ async def post_to_page(
             response = await client.post(
                 f"https://graph.facebook.com/v21.0/{page}/feed",
                 params={"access_token": token},
-                json={"message": message}
+                json={"message": request.message}
             )
             
             response.raise_for_status()
