@@ -25,6 +25,12 @@ class Settings(BaseSettings):
     facebook_app_secret: str = ""
     facebook_verify_token: str = ""
     
+    # Twitter API (OAuth 1.0a)
+    twitter_consumer_key: str = ""
+    twitter_consumer_secret: str = ""
+    twitter_access_token: str = ""
+    twitter_access_token_secret: str = ""
+    
     # Rate Limiting (requests per minute per API key)
     rate_limit_per_minute: int = 30
     
@@ -32,6 +38,7 @@ class Settings(BaseSettings):
     cost_reddit_post: int = 10
     cost_reddit_search: int = 5
     cost_email_send: int = 15
+    cost_twitter_tweet: int = 10
     
     class Config:
         env_file = ".env"
