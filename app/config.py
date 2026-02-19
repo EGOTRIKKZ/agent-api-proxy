@@ -31,6 +31,14 @@ class Settings(BaseSettings):
     twitter_access_token: str = ""
     twitter_access_token_secret: str = ""
     
+    # GitHub OAuth
+    github_client_id: str = ""
+    github_client_secret: str = ""
+    github_callback_url: str = "https://agent-api-proxy-production.up.railway.app/api/github/callback"
+    
+    # Frontend URL (for OAuth redirects)
+    frontend_url: str = "https://agent-api-proxy-production.up.railway.app"
+    
     # Rate Limiting (requests per minute per API key)
     rate_limit_per_minute: int = 30
     
@@ -39,6 +47,8 @@ class Settings(BaseSettings):
     cost_reddit_search: int = 5
     cost_email_send: int = 15
     cost_twitter_tweet: int = 10
+    cost_github_create_repo: int = 10
+    cost_github_push_file: int = 5
     
     class Config:
         env_file = ".env"
