@@ -53,6 +53,8 @@ class Settings(BaseSettings):
     cost_vercel_deploy: int = 25
     cost_vercel_list: int = 5
     cost_vercel_status: int = 2
+    cost_twilio_sms: int = 10
+    cost_twilio_call: int = 15
     
     class Config:
         env_file = ".env"
