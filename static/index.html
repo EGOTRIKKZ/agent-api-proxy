@@ -178,65 +178,100 @@
     <div class="container">
         <header>
             <h1>🤖 Agent API Proxy</h1>
-            <p>Simple API proxy service for AI agents</p>
+            <p>Infrastructure for the agent economy. Secure, metered access to external APIs.</p>
         </header>
         
         <main>
             <section>
-                <h2>Available Endpoints</h2>
+                <h2>Available Integrations</h2>
                 <div class="endpoint-grid">
                     <div class="endpoint-card">
                         <span class="method post">POST</span>
-                        <h3>/api/reddit/post</h3>
-                        <p>Create a text post on Reddit</p>
-                        <div class="price">$0.10 per post</div>
-                    </div>
-                    
-                    <div class="endpoint-card">
-                        <span class="method get">GET</span>
-                        <h3>/api/reddit/search</h3>
-                        <p>Search Reddit posts and comments</p>
-                        <div class="price">$0.05 per search</div>
+                        <h3>GitHub</h3>
+                        <p>Create repos, push files, OAuth flow</p>
+                        <div class="price">$0.05 - $0.10</div>
                     </div>
                     
                     <div class="endpoint-card">
                         <span class="method post">POST</span>
-                        <h3>/api/email/send</h3>
+                        <h3>Discord</h3>
+                        <p>Send messages via webhooks</p>
+                        <div class="price">$0.05 per message</div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <span class="method post">POST</span>
+                        <h3>Vercel</h3>
+                        <p>Deploy projects, check status</p>
+                        <div class="price">$0.02 - $0.25</div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <span class="method post">POST</span>
+                        <h3>Twilio</h3>
+                        <p>Send SMS, make phone calls</p>
+                        <div class="price">$0.10 - $0.15</div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <span class="method post">POST</span>
+                        <h3>Email</h3>
                         <p>Send emails via SendGrid</p>
                         <div class="price">$0.15 per email</div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <span class="method post">POST</span>
+                        <h3>Twitter</h3>
+                        <p>Post tweets via OAuth</p>
+                        <div class="price">$0.10 per tweet</div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <span class="method post">POST</span>
+                        <h3>Reddit</h3>
+                        <p>Post, search, interact</p>
+                        <div class="price">$0.05 - $0.10</div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <span class="method post">POST</span>
+                        <h3>Facebook</h3>
+                        <p>Messenger integration</p>
+                        <div class="price">Coming soon</div>
                     </div>
                 </div>
             </section>
             
             <section>
-                <h2>Features</h2>
+                <h2>Why Agent API Proxy?</h2>
                 <div class="features">
                     <div class="feature">
-                        <div class="feature-icon">🔑</div>
+                        <div class="feature-icon">🔒</div>
                         <div>
-                            <strong>API Key Auth</strong><br>
-                            Simple Bearer token authentication
+                            <strong>Secure Credentials</strong><br>
+                            Agents never touch your raw API keys
                         </div>
                     </div>
                     <div class="feature">
                         <div class="feature-icon">📊</div>
                         <div>
                             <strong>Usage Tracking</strong><br>
-                            Track all API calls and costs
+                            Full audit logs and cost tracking
                         </div>
                     </div>
                     <div class="feature">
                         <div class="feature-icon">⚡</div>
                         <div>
                             <strong>Rate Limiting</strong><br>
-                            30 requests per minute per key
+                            Prevent runaway agent costs
                         </div>
                     </div>
                     <div class="feature">
-                        <div class="feature-icon">🚀</div>
+                        <div class="feature-icon">🎯</div>
                         <div>
-                            <strong>Fast & Minimal</strong><br>
-                            Built with FastAPI for speed
+                            <strong>Production Ready</strong><br>
+                            Built for real agent workloads
                         </div>
                     </div>
                 </div>
