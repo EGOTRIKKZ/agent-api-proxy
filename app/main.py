@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 
 from app.config import get_settings
 from app.database import init_db, get_db, create_api_key, UsageLog, APIKey
-from app.routers import reddit, email, facebook, blog, twitter, github, discord
+from app.routers import reddit, email, facebook, blog, twitter, github, discord, vercel
 from app.rate_limiter import limiter
 from slowapi.errors import RateLimitExceeded
 from datetime import datetime, timedelta
@@ -52,6 +52,7 @@ app.include_router(facebook.router)
 app.include_router(twitter.router)
 app.include_router(github.router)
 app.include_router(discord.router)
+app.include_router(vercel.router)
 app.include_router(blog.router)
 
 

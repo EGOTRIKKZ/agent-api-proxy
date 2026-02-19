@@ -50,6 +50,9 @@ class Settings(BaseSettings):
     cost_github_create_repo: int = 10
     cost_github_push_file: int = 5
     cost_discord_webhook: int = 5
+    cost_vercel_deploy: int = 25
+    cost_vercel_list: int = 5
+    cost_vercel_status: int = 2
     
     class Config:
         env_file = ".env"
